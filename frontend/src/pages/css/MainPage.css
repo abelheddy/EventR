@@ -122,3 +122,52 @@
       left: 0;
     }
   }
+
+/* Estilos para la sección Nosotros */
+.nosotros-section {
+  padding: 60px 20px;
+  text-align: center;
+  background-color: white; /* Fondo blanco para la sección */
+}
+
+.nosotros-container {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background-image: url('../../assets/fondo-nosotros.jpeg'); /* Imagen de fondo */
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden; /* Asegura que el difuminado no se salga del cuadro */
+}
+
+.nosotros-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(230, 126, 34, 0.3); /* Difuminado naranja suave (rgba: e67e22 con 30% de opacidad) */
+  z-index: 1;
+}
+
+.nosotros-container h1,
+.nosotros-container p {
+  position: relative;
+  z-index: 2; /* Asegura que el texto esté por encima del difuminado */
+}
+
+.nosotros-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #ffffff; /* Color oscuro para el título */
+}
+
+.nosotros-container p {
+  font-size: 1.2rem;
+  color: #ffffff; /* Color oscuro para el texto */
+  line-height: 1.6;
+}
