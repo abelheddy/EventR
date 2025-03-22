@@ -67,3 +67,43 @@
   .footer-nav ul li a:hover {
     text-decoration: underline;
   }
+
+  /* Estilos para el carrusel */
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 600px; /* Ajusta el tamaño según tus necesidades */
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.carousel-image {
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 18px;
+}
+
+.carousel-button.prev {
+  left: 10px;
+}
+
+.carousel-button.next {
+  right: 10px;
+}
+
+.carousel-button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}

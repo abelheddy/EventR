@@ -171,3 +171,62 @@
   color: #ffffff; /* Color oscuro para el texto */
   line-height: 1.6;
 }
+/* Estilos para el carrusel grande */
+.carrusel-grande {
+  width: 100%;
+  height: 400px; /* Ajusta la altura según tus necesidades */
+  overflow: hidden;
+  position: relative;
+}
+
+/* Estilos para la sección de texto e imagen */
+.texto-imagen-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 20px;
+  background-color: white; /* Fondo blanco */
+}
+
+.texto-izquierda {
+  flex: 1;
+  padding-right: 20px;
+}
+
+.texto-izquierda h1 {
+  font-size: 3rem; /* Texto grande */
+  color: #333; /* Color oscuro */
+  line-height: 1.2;
+}
+
+.imagen-derecha {
+  flex: 1;
+  max-width: 50%; /* La imagen ocupa la mitad del espacio */
+}
+
+.imagen-derecha img {
+  width: 100%;
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .texto-imagen-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .texto-izquierda {
+    padding-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .imagen-derecha {
+    max-width: 100%;
+  }
+
+  .texto-izquierda h1 {
+    font-size: 2.5rem; /* Ajusta el tamaño del texto en móviles */
+  }
+}
