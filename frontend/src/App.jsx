@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
-import './App.css';
+//import './App.css';
 import Header from './components/Header'; // Importa el componente Header
 import Footer from './components/Footer'; // Importa el componente Footer
+import MainPage from './pages/MainPage';
 
 function App() {
     const [count, setCount] = useState(0);
@@ -18,8 +19,8 @@ function App() {
 
     return (
         <>
-            <Header /> {/* Agrega el componente Header aquí */}
-            <div className="App">
+           
+            {/* <div className="App">
                 <h1>Frontend conectado al Backend</h1>
                 <p>{message}</p>
                 
@@ -43,8 +44,10 @@ function App() {
                 <p className="read-the-docs">
                     Click on the Vite and React logos to learn more
                 </p>
+            </div> */}
+            <div className="App">
+                <MainPage />
             </div>
-            <Footer /> {/* Agrega el componente Footer aquí */}
         </>
     );
 }
