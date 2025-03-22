@@ -174,7 +174,7 @@
 /* Estilos para el carrusel grande */
 .carrusel-grande {
   width: 100%;
-  height: 400px; /* Ajusta la altura según tus necesidades */
+  height: 800px; /* Ajusta la altura según tus necesidades */
   overflow: hidden;
   position: relative;
 }

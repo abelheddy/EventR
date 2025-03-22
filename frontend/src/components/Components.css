@@ -68,19 +68,21 @@
     text-decoration: underline;
   }
 
-  /* Estilos para el carrusel */
+/* Estilos para el carrusel */
 .carousel {
   position: relative;
-  width: 100%;
-  max-width: 600px; /* Ajusta el tamaño según tus necesidades */
-  margin: 0 auto;
+  width: 70%; /* Ancho reducido al 70% */
+  height: 700px; /* Altura aumentada a 600px */
   overflow: hidden;
+  margin: 40px auto 0; /* Margen superior y centrado */
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
 }
 
 .carousel-image {
   width: 100%;
-  display: block;
-  border-radius: 10px;
+  height: 100%; /* La imagen ocupa todo el espacio del carrusel */
+  object-fit: fill; /* Ajusta la imagen para cubrir el espacio sin distorsionarse */
 }
 
 .carousel-button {
