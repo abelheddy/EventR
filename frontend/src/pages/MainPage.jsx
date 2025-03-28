@@ -7,25 +7,7 @@ import ImageCarousel from '../components/ImageCarousel';
 const MainPage = () => {
     return (
         <>
-            <nav>
-                <input type="checkbox" id="check" />
-                <label htmlFor="check" className="checkbtn">
-                    <i className="fas fa-bars"></i> {/* Ícono de hamburguesa */}
-                </label>
-                <a href="" className="enlace">
-                    <img src={logo} alt="Logo" className="logo" /> {/* Logo */}
-                </a>
-                <ul className="nav-buttons">
-                    <li><a className="active" href="#">Inicio</a></li>
-                    <li><a href="">Eventos</a></li>
-                    <li><a href="#nosotros">Nostoros</a></li>
-                    <li><a href="">Contacto</a></li>
-                </ul>
-                <ul className="auth-buttons">
-                    <li><a href="">Login</a></li>
-                    <li><a href="">Register</a></li>
-                </ul>
-            </nav>
+
 
             {/* Carrusel más grande */}
             <div className="carrusel-grande">

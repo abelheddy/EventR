@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Routes, Route } from 'react-router-dom';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 //import './App.css';
 import Header from './components/Header'; // Importa el componente Header
 import Footer from './components/Footer'; // Importa el componente Footer
-import MainPage from './pages/MainPage';
+import Login from './pages/login/Login'; // Importa la página de Login
+import MainPage from './pages/MainPage'; // Importa la página MainPage
 
 function App() {
     const [count, setCount] = useState(0);
@@ -19,7 +21,7 @@ function App() {
 
     return (
         <>
-           
+
             {/* <div className="App">
                 <h1>Frontend conectado al Backend</h1>
                 <p>{message}</p>
@@ -46,8 +48,16 @@ function App() {
                 </p>
             </div> */}
             <div className="App">
+                <Header />
                 <MainPage />
-            </div>
+                <main>
+                    <Routes>
+                        <Route path="/" element={<MainPage message={message} count={count} setCount={setCount} />} />
+                        <Route path="/login" element={<Login />} />
+                    </Routes>
+                </main>
+                <Footer />
+            </div >
         </>
     );
 }
