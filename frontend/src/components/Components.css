@@ -1,141 +1,219 @@
-/*.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: #007bff;
-    color: white;
-  }*/
-  
-  /* Menú */
-  nav {
-    background: #e67e22; /* Naranja oscuro */
-    height: 80px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 50px;
-  }
-  
-  .enlace {
-    display: flex;
-    align-items: center;
-  }
-  
-  .logo {
-    height: 40px;
-  }
-  
-  nav ul {
-    display: flex;
-    align-items: center;
-  }
-  
-  nav ul li {
-    margin: 0 10px;
-  }
-  
+/* ===== ESTILOS BASE ===== */
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+/* ===== HEADER ===== */
+.header {
+  width: 100%;
+  position: relative;
+}
+
+nav {
+  background: #e67e22;
+  height: 80px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+  box-sizing: border-box;
+}
+
+.enlace {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.logo {
+  height: 40px;
+  transition: all 0.3s;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+nav ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  margin: 0 10px;
+}
+
+nav ul li a {
+  color: #fff;
+  font-size: 18px;
+  padding: 7px 13px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+nav ul li a:hover, 
+nav ul li a.active {
+  background: #d35400;
+}
+
+/* ===== MENU HAMBURGUESA ===== */
+.checkbtn {
+  font-size: 30px;
+  color: #fff;
+  cursor: pointer;
+  display: none;
+  margin-left: auto;
+}
+
+#check {
+  display: none;
+}
+
+/* ===== MENU RESPONSIVE ===== */
+@media (max-width: 952px) {
   nav ul li a {
-    color: #fff;
-    font-size: 18px;
-    padding: 7px 13px;
-    border-radius: 3px;
-    text-transform: uppercase;
-    transition: background-color 0.3s;
+    font-size: 16px;
   }
-  
-  li a.active, li a:hover {
-    background: #d35400; /* Naranja más oscuro para hover y activo */
+}
+
+@media (max-width: 858px) {
+  nav {
+    padding: 0 20px;
   }
   
   .checkbtn {
-    font-size: 30px;
-    color: #fff;
-    cursor: pointer;
-    display: none;
+    display: block;
   }
   
-  #check {
-    display: none;
-  }
-  /*
-  .logo h1 {
-    margin: 0;
-    font-size: 1.5rem;
-  }
-  
-  .nav ul {
-    list-style: none;
-    margin: 0;
+  .menu-container {
+    position: fixed;
+    width: 100%;
+    height: calc(100vh - 80px);
+    background: #e67e22;
+    top: 80px;
+    left: -100%;
+    text-align: center;
+    transition: all 0.5s;
+    flex-direction: column;
+    z-index: 1000;
     padding: 0;
-    display: flex;
-  }
-  
-  .nav ul li {
-    margin-left: 1rem;
-  }
-  
-  .nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 1rem;
-  }
-  
-  .nav ul li a:hover {
-    text-decoration: underline;
-  }*/
-  /*Footer*/
-  .footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: #333;
-    color: white;
-    margin-top: auto;
-  }
-  
-  .footer p {
     margin: 0;
   }
   
-  .footer-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
+  nav ul {
+    flex-direction: column;
+    width: 100%;
   }
   
-  .footer-nav ul li {
-    margin-left: 1rem;
+  nav ul li {
+    margin: 20px 0;
+    width: 100%;
   }
   
-  .footer-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 0.9rem;
+  nav ul li a {
+    font-size: 20px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
   }
   
-  .footer-nav ul li a:hover {
-    text-decoration: underline;
+  #check:checked ~ .menu-container {
+    left: 0;
   }
+}
 
-/* Estilos para el carrusel */
+/* ===== FOOTER ===== */
+.footer {
+  background-color: #333;
+  color: white;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.footer-content {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 250px;
+}
+
+.footer h3 {
+  color: #e67e22;
+  margin-bottom: 1rem;
+}
+
+.footer p, .footer a {
+  color: #ecf0f1;
+  margin: 0.5rem 0;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: #e67e22;
+}
+
+.footer-bottom {
+  width: 100%;
+  text-align: center;
+  padding-top: 1rem;
+  margin-top: 1rem;
+  border-top: 1px solid #555;
+}
+
+/* ===== BOTONES AUTH ===== */
+.auth-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.auth-btn {
+  background: #d35400;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.auth-btn:hover {
+  background: #a04000;
+}
+
+/* ===== CAROUSEL ===== */
 .carousel {
   position: relative;
-  width: 70%; /* Ancho reducido al 70% */
-  height: 700px; /* Altura aumentada a 600px */
+  width: 80%;
+  max-width: 1200px;
+  height: 500px;
   overflow: hidden;
-  margin: 40px auto 0; /* Margen superior y centrado */
-  border-radius: 10px; /* Bordes redondeados */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
+  margin: 40px auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .carousel-image {
   width: 100%;
-  height: 100%; /* La imagen ocupa todo el espacio del carrusel */
-  object-fit: fill; /* Ajusta la imagen para cubrir el espacio sin distorsionarse */
+  height: 100%;
+  object-fit: cover;
 }
 
 .carousel-button {
@@ -145,20 +223,49 @@
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
   border: none;
-  padding: 10px;
+  padding: 15px;
   cursor: pointer;
   border-radius: 50%;
-  font-size: 18px;
+  font-size: 20px;
+  z-index: 10;
 }
 
 .carousel-button.prev {
-  left: 10px;
+  left: 20px;
 }
 
 .carousel-button.next {
-  right: 10px;
+  right: 20px;
 }
 
 .carousel-button:hover {
   background-color: rgba(0, 0, 0, 0.8);
+}
+/* ESTILOS GLOBALES */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Estilos para el mensaje del backend */
+.backend-message {
+  padding: 1rem;
+  background: #e8f5e9;
+  border-left: 4px solid #4caf50;
+  margin-bottom: 2rem;
+}
+
+.error-message {
+  background: #ffebee;
+  border-left: 4px solid #f44336;
 }

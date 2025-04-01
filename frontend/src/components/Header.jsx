@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // Importa Link
-import './Components.css';
-import logo from '../assets/logo.png';
+import { Link } from 'react-router-dom';
+import './Components.css'; // ← Asegúrate que esta ruta es correcta
+import logo from '../assets/logo.png'; // ← Verifica también esta ruta
 
 const Header = () => {
   return (
@@ -11,19 +11,24 @@ const Header = () => {
         <label htmlFor="check" className="checkbtn">
           <i className="fas fa-bars"></i>
         </label>
-        <Link to="/" className="enlace"> {/* Cambia a Link */}
+        
+        <Link to="/" className="enlace">
           <img src={logo} alt="Logo" className="logo" />
         </Link>
-        <ul className="nav-buttons">
-          <li><Link to="/" className="active">Inicio</Link></li> {/* Cambia a Link */}
-          <li><Link to="/eventos">Eventos</Link></li> {/* Ejemplo de ruta */}
-          <li><a href="#nosotros">Nosotros</a></li> {/* Se mantiene como anchor para scroll */}
-          <li><Link to="/contacto">Contacto</Link></li> {/* Ejemplo de ruta */}
-        </ul>
-        <ul className="auth-buttons">
-          <li><Link to="/login">Login</Link></li> {/* Cambia a Link */}
-          <li><Link to="/register">Register</Link></li> {/* Ejemplo de ruta */}
-        </ul>
+        
+        <div className="menu-container">
+          <ul className="nav-buttons">
+            <li><Link to="/" className="active">Inicio</Link></li>
+            <li><Link to="/eventos">Eventos</Link></li>
+            <li><a href="#nosotros">Nosotros</a></li>
+            <li><Link to="/contacto">Contacto</Link></li>
+          </ul>
+          
+          <ul className="auth-buttons">
+            <li><Link to="/login">Login</Link></li>
+            <li><Link to="/register">Register</Link></li>
+          </ul>
+        </div>
       </nav>
     </header>
   );
