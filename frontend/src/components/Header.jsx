@@ -1,33 +1,44 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Components.css'; // ← Asegúrate que esta ruta es correcta
-import logo from '../assets/logo.png'; // ← Verifica también esta ruta
+import './Components.css';
+import logo from '../assets/logo.png';
 
-const Header = () => {
+const Header = ({ isLoggedIn, username }) => {
   return (
     <header className="header">
-      <nav>
-        <input type="checkbox" id="check" />
-        <label htmlFor="check" className="checkbtn">
-          <i className="fas fa-bars"></i>
-        </label>
-        
-        <Link to="/" className="enlace">
+      <nav className="nav-container">
+        {/* Logo */}
+        <Link to="/" className="logo-link">
           <img src={logo} alt="Logo" className="logo" />
         </Link>
-        
-        <div className="menu-container">
-          <ul className="nav-buttons">
-            <li><Link to="/" className="active">Inicio</Link></li>
-            <li><Link to="/eventos">Eventos</Link></li>
-            <li><a href="#nosotros">Nosotros</a></li>
-            <li><Link to="/contacto">Contacto</Link></li>
-          </ul>
-          
-          <ul className="auth-buttons">
-            <li><Link to="/login">Login</Link></li>
-            <li><Link to="/register">Register</Link></li>
-          </ul>
+
+        {/* Barra de búsqueda */}
+        <div className="search-container">
+          <input type="text" placeholder="Buscar..." className="search-input" />
+          <button className="search-button">
+            <i className="fas fa-search"></i>
+          </button>
+        </div>
+
+        {/* Menú de navegación */}
+        <ul className="nav-menu">
+          <li><Link to="/destacados" className="nav-link">Destacados</Link></li>
+          <li><Link to="/contacto" className="nav-link">Contacto</Link></li>
+        </ul>
+
+        {/* Sección de usuario */}
+        <div className="user-section">
+          {isLoggedIn ? (
+            <>
+              <button className="logout-button">Cerrar sesión</button>
+              <span className="username">{username}</span>
+            </>
+          ) : (
+            <>
+              <Link to="/login" className="auth-link">Iniciar sesión</Link>
+              <Link to="/register" className="auth-link">Registrarse</Link>
+            </>
+          )}
         </div>
       </nav>
     </header>
