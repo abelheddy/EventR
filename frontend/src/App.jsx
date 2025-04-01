@@ -50,12 +50,12 @@ function App() {
             <div className="App">
                 <Header />
                 <MainPage />
-                <main>
+                {/*<main>
                     <Routes>
                         <Route path="/" element={<MainPage message={message} count={count} setCount={setCount} />} />
                         <Route path="/login" element={<Login />} />
                     </Routes>
-                </main>
+                </main>*/}
                 <Footer />
             </div >
         </>
