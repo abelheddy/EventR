@@ -21,14 +21,12 @@ function App() {
     }, []);
 
     return (
-        <>
-            <div className="App">
-                <Header />
-                <h1>Prueba básica</h1>
-                <p>Mensaje del backend: {message || "Cargando..."}</p>
-                <Footer />
-            </div>
-        </>
+        <div className="app-container">
+            <Header />
+            <h1>Prueba básica</h1>
+            <p>Mensaje del backend: {message || "Cargando..."}</p>
+            <Footer />
+        </div>
     );
 }
 

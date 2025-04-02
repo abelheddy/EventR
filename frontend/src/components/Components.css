@@ -84,11 +84,12 @@ html, body {
   font-weight: 500;
   text-decoration: none;
   transition: color 0.3s;
+  border-radius: 15px;
 }
 
 .nav-link:hover {
-  background: #fc9236;
-  color: #f8f6f5;
+  background: #f1f1f1;
+  color: #333;
 }
 
 /* Sección de usuario */
@@ -213,52 +214,112 @@ html, body {
   }
 }
 
-/* ===== FOOTER ===== */
-.footer {
-  background-color: #333;
+/* ===== FOOTER EXACTO CON REDES SOCIALES ===== */
+.footer-exact {
+  background-color: white;
   color: white;
-  padding: 2rem;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  width: 100%;
+}
+.linea{
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #838282;
+}
+.footer-copyright-exact {
+  text-align: center;
+}
+
+.footer-copyright-exact p {
+  margin: 0;
+  color: black;
+}
+
+.footer-content-exact {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.developer-column {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-}
-
-.footer-content {
-  width: 100%;
-  max-width: 1200px;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 2rem;
-}
-
-.footer-section {
+  margin: 0 10px;
   flex: 1;
-  min-width: 250px;
+  min-width: 200px;
 }
 
-.footer h3 {
+.developer-title-exact {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: black;
+}
+
+.developer-names-exact {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  color: black;
+}
+
+.developer-names-exact span {
+  margin: 2px 0;
+}
+
+.social-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-width: 200px;
+}
+
+.footer-logo {
+  margin-bottom: 15px;
+}
+
+.logo-img {
+  height: 40px;
+  width: auto;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.social-icon {
+  color: black;
+  font-size: 18px;
+  transition: color 0.3s;
+}
+
+.social-icon:hover {
   color: #e67e22;
-  margin-bottom: 1rem;
 }
 
-.footer p, .footer a {
-  color: #ecf0f1;
-  margin: 0.5rem 0;
-  text-decoration: none;
-}
-
-.footer a:hover {
-  color: #e67e22;
-}
-
-.footer-bottom {
-  width: 100%;
-  text-align: center;
-  padding-top: 1rem;
-  margin-top: 1rem;
-  border-top: 1px solid #555;
+/* Ajustes responsive */
+@media (max-width: 768px) {
+  .footer-content-exact {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .developer-column, .social-column {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  
+  .social-icons {
+    margin-top: 10px;
+  }
 }
 
 /* ===== BOTONES AUTH ===== */
@@ -351,4 +412,21 @@ html, body {
 .error-message {
   background: #ffebee;
   border-left: 4px solid #f44336;
+}
+/* Estilos para mantener el footer abajo */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Viewport Height completo */
+}
+
+.main-content {
+  flex: 1; /* Esto hace que el contenido principal ocupe todo el espacio disponible */
+  padding: 20px; /* Ajusta según necesites */
 }
