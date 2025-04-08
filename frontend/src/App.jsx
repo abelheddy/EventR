@@ -9,6 +9,7 @@ import './components/Components.css'; // Importa los estilos globales
 import Footer from './components/Footer'; // Importa el componente Footer
 import Login from './pages/login/Login'; // Importa la página de Login
 import MainPage from './pages/MainPage'; // Importa la página MainPage
+import Reg from './pages/register/register';
 
 function App() {
     const [count, setCount] = useState(0);
@@ -22,9 +23,16 @@ function App() {
 
     return (
         <div className="app-container">
-            <Header />
+            <Header />{/*
             <h1>Prueba básica</h1>
-            <p>Mensaje del backend: {message || "Cargando..."}</p>
+            <p>Mensaje del backend: {message || "Cargando..."}</p>*/}
+            <main className="main-content">
+                <Routes>
+                    <Route path="/" element={<MainPage />} />
+                    <Route path="/register" element={<Reg />} />
+                    {/* Otras rutas */}
+                </Routes>
+            </main>
             <Footer />
         </div>
     );

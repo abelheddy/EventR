@@ -4,6 +4,10 @@ html, body {
   padding: 0;
   font-family: 'Arial', sans-serif;
 }
+.main-content {
+  flex: 1;
+  padding: 2rem;
+}
 
 /* ===== HEADER ===== */
 .header {
