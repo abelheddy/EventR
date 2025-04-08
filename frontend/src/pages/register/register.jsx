@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './css/EventrRegister.css';
+import logo from '../../assets/logo.png'; // Asegúrate de tener tu logo en assets
 
-const EventrRegister = () => {
+const Register = () => {
   const [formData, setFormData] = useState({
     nombre: '',
     email: '',
@@ -18,14 +20,17 @@ const EventrRegister = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aquí iría la lógica para manejar el registro
+    // Lógica para manejar el registro
     console.log('Datos del formulario:', formData);
   };
 
   return (
-    <div className="register-container">
-      <div className="register-card">
-        <h1 className="register-title">EVENTR</h1>
+    <div className="register-page">
+      <div className="register-container">
+        <div className="register-header">
+          <img src={logo} alt="Eventr Logo" className="register-logo" />
+          <h1 className="register-title">EVENTR</h1>
+        </div>
         
         <form onSubmit={handleSubmit} className="register-form">
           <div className="form-group">
@@ -41,7 +46,7 @@ const EventrRegister = () => {
           </div>
           
           <div className="form-group">
-            <label htmlFor="email">Correo electronico</label>
+            <label htmlFor="email">Correo electrónico</label>
             <input
               type="email"
               id="email"
@@ -66,9 +71,13 @@ const EventrRegister = () => {
           
           <button type="submit" className="register-button">Registrarse</button>
         </form>
+
+        <div className="login-link">
+          ¿Ya tienes una cuenta? <Link to="/login">Inicia sesión</Link>
+        </div>
       </div>
     </div>
   );
 };
 
-export default EventrRegister;
+export default Register;
