@@ -10,6 +10,8 @@ import Footer from './components/Footer'; // Importa el componente Footer
 import Login from './pages/login/Login'; // Importa la página de Login
 import MainPage from './pages/MainPage'; // Importa la página MainPage
 import Reg from './pages/register/register';
+import Mante from './pages/mantenimiento/mantenimiento';
+
 
 function App() {
     const [count, setCount] = useState(0);
@@ -30,6 +32,10 @@ function App() {
                 <Routes>
                     <Route path="/" element={<MainPage />} />
                     <Route path="/register" element={<Reg />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/mantenimiento" element={<Mante />} />
+                    <Route path="/Contacto" element={<Mate />} />
+                    <Route path="/Destacado" element={<Mate />} />
                     {/* Otras rutas */}
                 </Routes>
             </main>
