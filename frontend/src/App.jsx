@@ -34,8 +34,8 @@ function App() {
                     <Route path="/register" element={<Reg />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/mantenimiento" element={<Mante />} />
-                    <Route path="/Contacto" element={<Mate />} />
-                    <Route path="/Destacado" element={<Mate />} />
+                    {/*<Route path="/contacto" element={<Mate />} />
+                    <Route path="/destacado" element={<Mate />}/> */}
                     {/* Otras rutas */}
                 </Routes>
             </main>
