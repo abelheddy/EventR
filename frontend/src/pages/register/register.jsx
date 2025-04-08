@@ -18,10 +18,33 @@ const Register = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Lógica para manejar el registro
-    console.log('Datos del formulario:', formData);
+    try {
+      const response = await fetch('http://localhost:5000/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          nombre: formData.nombre,
+          email: formData.email,
+          password: formData.password
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log('Registro exitoso:', data);
+        // Redirigir al usuario o mostrar mensaje de éxito
+      } else {
+        console.error('Error en el registro:', data.message);
+        // Mostrar mensaje de error al usuario
+      }
+    } catch (error) {
+      console.error('Error al conectar con el servidor:', error);
+    }
   };
 
   return (
@@ -31,7 +54,7 @@ const Register = () => {
           <img src={logo} alt="Eventr Logo" className="register-logo" />
           <h1 className="register-title">EVENTR</h1>
         </div>
-        
+
         <form onSubmit={handleSubmit} className="register-form">
           <div className="form-group">
             <label htmlFor="nombre">Nombre</label>
@@ -44,7 +67,7 @@ const Register = () => {
               required
             />
           </div>
-          
+
           <div className="form-group">
             <label htmlFor="email">Correo electrónico</label>
             <input
@@ -56,7 +79,7 @@ const Register = () => {
               required
             />
           </div>
-          
+
           <div className="form-group">
             <label htmlFor="password">Contraseña</label>
             <input
@@ -68,7 +91,7 @@ const Register = () => {
               required
             />
           </div>
-          
+
           <button type="submit" className="register-button">Registrarse</button>
         </form>
 
