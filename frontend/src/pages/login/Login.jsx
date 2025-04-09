@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import './styles/Login.css';
+import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+import './styles/Login.css'; // Asegúrate de tener este archivo CSS para los estilos
+
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -9,7 +11,17 @@ const Login = () => {
   });
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const { login, isAuthenticated } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || '/';
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate(from, { replace: true });
+    }
+  }, [isAuthenticated, navigate, from]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,12 +29,12 @@ const Login = () => {
       ...prev,
       [name]: value
     }));
-    setError('');
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
+    setError('');
     
     try {
       const response = await fetch('http://localhost:5000/api/auth/login', {
@@ -36,12 +48,7 @@ const Login = () => {
       const data = await response.json();
 
       if (response.ok) {
-        // Guardar token en localStorage
-        localStorage.setItem('token', data.token);
-        // Guardar datos de usuario
-        localStorage.setItem('user', JSON.stringify(data.user));
-        // Redirigir al dashboard
-        navigate('/');
+        login(data.token, data.user);
       } else {
         setError(data.message || 'Credenciales incorrectas');
       }
@@ -68,27 +75,27 @@ const Login = () => {
         <form onSubmit={handleSubmit} className="login-form">
           <div className="form-group">
             <label htmlFor="email">Correo electrónico</label>
-            <input 
-              type="email" 
-              id="email" 
+            <input
+              type="email"
+              id="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
-              placeholder="tu@email.com" 
-              required 
+              placeholder="tu@email.com"
+              required
             />
           </div>
           
           <div className="form-group">
             <label htmlFor="password">Contraseña</label>
-            <input 
-              type="password" 
-              id="password" 
+            <input
+              type="password"
+              id="password"
               name="password"
               value={formData.password}
               onChange={handleChange}
-              placeholder="••••••••" 
-              required 
+              placeholder="••••••••"
+              required
             />
           </div>
           
@@ -102,7 +109,7 @@ const Login = () => {
         </form>
         
         <div className="login-footer">
-          <p>¿No tienes una cuenta? <Link to="/register">Regístrate</Link></p>
+          <p>¿No tienes una cuenta? <Link to="/register" state={{ from: location.state?.from }}>Regístrate</Link></p>
           <Link to="/forgot-password">¿Olvidaste tu contraseña?</Link>
         </div>
       </div>

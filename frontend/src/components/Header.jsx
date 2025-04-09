@@ -1,9 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import './Components.css';
 import logo from '../assets/logo.png';
 
-const Header = ({ isLoggedIn, username }) => {
+const Header = () => {
+  const { user, isAuthenticated, logout } = useAuth();
+
   return (
     <header className="header">
       <nav className="nav-container">
@@ -28,16 +31,18 @@ const Header = ({ isLoggedIn, username }) => {
 
         {/* Sección de usuario */}
         <div className="user-section">
-          {isLoggedIn ? (
+          {isAuthenticated ? (
             <>
-              <button className="logout-button">Cerrar sesión</button>
-              <span className="username">{username}</span>
+              <button onClick={logout} className="auth-btn logout-button">
+                Cerrar sesión
+              </button>
+              <span className="username">{user?.nombre}</span>
             </>
           ) : (
-            <>
-              <Link to="/login" className="auth-link">Iniciar sesión</Link>
-              <Link to="/register" className="auth-link">Registrarse</Link>
-            </>
+            <div className="auth-buttons">
+              <Link to="/login" className="auth-btn">Iniciar sesión</Link>
+              <Link to="/register" className="auth-btn">Registrarse</Link>
+            </div>
           )}
         </div>
       </nav>

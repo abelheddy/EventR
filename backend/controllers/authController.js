@@ -135,9 +135,31 @@ const getCurrentUser = async (req, res) => {
     });
   }
 };
+// Agrega esta función para verificar el token
+const verifyAuth = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'Usuario no encontrado' });
+    }
+    
+    res.json({
+      success: true,
+      user: {
+        id: user.id,
+        nombre: user.nombre,
+        email: user.correo
+      }
+    });
+  } catch (error) {
+    console.error('Error al verificar autenticación:', error);
+    res.status(500).json({ success: false, message: 'Error al verificar autenticación' });
+  }
+};
 
 module.exports = {
   register,
   login,
-  getCurrentUser
+  getCurrentUser,
+  verifyAuth
 };

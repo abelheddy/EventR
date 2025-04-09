@@ -1,47 +1,52 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Routes, Route } from 'react-router-dom';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-//import './App.css';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'; // Importa las librerías necesarias
+import { AuthProvider, useAuth } from './context/AuthContext';  // Importa el contexto de autenticación
 import Header from './components/Header';
 import './components/Components.css'; // Importa los estilos globales
 import Footer from './components/Footer'; // Importa el componente Footer
 import Login from './pages/login/Login'; // Importa la página de Login
 import MainPage from './pages/MainPage'; // Importa la página MainPage
-import Reg from './pages/register/register';
-import Mante from './pages/mantenimiento/mantenimiento';
+import Reg from './pages/register/register'; // importa la página de registro
+import Mante from './pages/mantenimiento/mantenimiento'; // importa la página de mantenimiento
 
+
+// Componente para rutas protegidas
+const ProtectedRoute = ({ children }) => {
+    const { isAuthenticated, loading } = useAuth();
+
+    if (loading) return <div className="loading-spinner">Cargando...</div>;
+    if (!isAuthenticated) return <Navigate to="/login" replace />;
+
+    return children;
+};
 
 function App() {
-    const [count, setCount] = useState(0);
     const [message, setMessage] = useState('');
-
+  
     useEffect(() => {
         axios.get('http://localhost:5000/')
             .then(response => setMessage(response.data))
             .catch(error => console.error(error));
     }, []);
-
+  
     return (
-        <div className="app-container">
-            <Header />{/*
-            <h1>Prueba básica</h1>
-            <p>Mensaje del backend: {message || "Cargando..."}</p>*/}
-            <main className="main-content">
-                <Routes>
-                    <Route path="/" element={<MainPage />} />
-                    <Route path="/register" element={<Reg />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/mantenimiento" element={<Mante />} />
-                    {/*<Route path="/contacto" element={<Mate />} />
-                    <Route path="/destacado" element={<Mate />}/> */}
-                    {/* Otras rutas */}
-                </Routes>
-            </main>
-            <Footer />
-        </div>
+        <AuthProvider>
+            <div className="app-container">
+                <Header />
+                <main className="main-content">
+                    <Routes>
+                        <Route path="/" element={<MainPage />} />
+                        <Route path="/register" element={<Reg />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/mantenimiento" element={<Mante />} />
+                        <Route path="*" element={<Navigate to="/" replace />} />
+                    </Routes>
+                </main>
+                <Footer />
+            </div>
+        </AuthProvider>
     );
-}
+  }
 
 export default App;
