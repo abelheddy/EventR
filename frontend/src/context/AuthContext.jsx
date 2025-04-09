@@ -1,76 +1,65 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+// src/context/AuthContext.js
+import React, { createContext, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const location = useLocation();
 
+  // Verificar autenticación al cargar
   useEffect(() => {
-    const verifyAuth = async () => {
+    const checkAuth = async () => {
       try {
         const token = localStorage.getItem('token');
-        const savedUser = localStorage.getItem('user');
-        
-        if (!token) {
-          setLoading(false);
-          return;
-        }
-
-        const response = await fetch('http://localhost:5000/api/auth/verify', {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          setUser(data.user || JSON.parse(savedUser));
-          setIsAuthenticated(true);
+        if (token) {
+          // Verificar token con el backend
+          const response = await fetch('http://localhost:5000/api/auth/me', {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          });
           
-          // Redirigir si está en login/register y ya está autenticado
-          if (['/login', '/register'].includes(location.pathname)) {
-            navigate('/');
+          if (response.ok) {
+            const userData = await response.json();
+            setUser(userData);
+            setIsAuthenticated(true);
+          } else {
+            localStorage.removeItem('token');
           }
-        } else {
-          logout();
         }
       } catch (error) {
-        console.error('Error verifying auth:', error);
-        logout();
+        console.error('Error verificando autenticación:', error);
+        localStorage.removeItem('token');
       } finally {
         setLoading(false);
       }
     };
 
-    verifyAuth();
-  }, [location.pathname, navigate]);
+    checkAuth();
+  }, []);
 
   const login = (token, userData) => {
     localStorage.setItem('token', token);
-    localStorage.setItem('user', JSON.stringify(userData));
     setUser(userData);
     setIsAuthenticated(true);
-    navigate(location.state?.from || '/');
   };
 
   const logout = () => {
     localStorage.removeItem('token');
-    localStorage.removeItem('user');
     setUser(null);
     setIsAuthenticated(false);
-    navigate('/login', { state: { from: location } });
+    navigate('/');
   };
 
   return (
     <AuthContext.Provider value={{ 
       user, 
       isAuthenticated, 
-      loading, 
+      loading,
       login, 
       logout 
     }}>
@@ -79,10 +68,4 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error('useAuth debe usarse dentro de un AuthProvider');
-  }
-  return context;
-};
+export const useAuth = () => React.useContext(AuthContext);
