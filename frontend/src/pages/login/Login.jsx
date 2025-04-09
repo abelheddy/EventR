@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import './styles/Login.css'; // Asegúrate de tener este archivo CSS para los estilos
+import logo from '../../assets/logo.png';
 
 
 const Login = () => {
