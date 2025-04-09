@@ -73,7 +73,7 @@ const login = async (req, res) => {
     }
 
     // 2. Comparar contraseñas
-    const isMatch = await bcrypt.compare(password, user.contraseña);
+    const isMatch = await bcrypt.compare(password, user.contrasena);
     if (!isMatch) {
       return res.status(401).json({
         success: false,
@@ -84,17 +84,14 @@ const login = async (req, res) => {
 
     // 3. Generar token JWT
     const token = generateToken(user.id);
+    const userData = await User.findById(user.id);
 
     // 4. Responder sin datos sensibles
     res.json({
       success: true,
       message: 'Inicio de sesión exitoso',
-      user: {
-        id: user.id,
-        nombre: user.nombre,
-        email: user.email
-      },
-      token
+      token,
+      user: userData
     });
 
   } catch (error) {

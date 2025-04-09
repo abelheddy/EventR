@@ -21,6 +21,13 @@ class User {
     );
     return rows[0];
   }
+  static async findById(id) {
+    const [rows] = await db.execute(
+      'SELECT id, nombre, correo, fecha_creacion FROM usuarios WHERE id = ?',
+      [id]
+    );
+    return rows[0];
+  }
 }
 
 module.exports = User;
