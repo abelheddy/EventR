@@ -63,58 +63,49 @@ const Login = () => {
   return (
     <div className="login-container">
       <div className="login-card">
-        <h1 className="logo">EVENTR</h1>
-        <p className="welcome-text">
-          Bienvenido a Eventr, tu puerta de entrada a un universo de eventos inolvidables. 
-          Conéctate con experiencias culturales, musicales, deportivas y mucho más, 
-          todo en un solo lugar.
-        </p>
+        <div className="login-left-column">
+          <img src={logo} alt="Eventr Logo" className="login-logo" />
+          <h1 className="logo">EVENTR</h1>
+          <p className="welcome-text">
+            Bienvenido a Eventr, tu puerta de entrada a un universo de eventos inolvidables. 
+            Conéctate con experiencias culturales, musicales, deportivas y mucho más, 
+            todo en un solo lugar.
+          </p>
+        </div>
         
-        {error && <div className="error-message">{error}</div>}
-        
-        <form onSubmit={handleSubmit} className="login-form">
-          <div className="form-group">
-            <label htmlFor="email">Correo electrónico</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="tu@email.com"
-              required
-            />
-          </div>
+        <div className="login-right-column">
+          <form onSubmit={handleSubmit} className="login-form">
+            <div className="form-group">
+              <label htmlFor="email">Correo electrónico</label>
+              <input 
+                type="email" 
+                id="email" 
+                placeholder="tu@email.com" 
+                required 
+              />
+            </div>
+            
+            <div className="form-group">
+              <label htmlFor="password">Contraseña</label>
+              <input 
+                type="password" 
+                id="password" 
+                placeholder="••••••••" 
+                required 
+              />
+            </div>
+            
+            <button type="submit" className="login-button">Iniciar sesión</button>
+          </form>
           
-          <div className="form-group">
-            <label htmlFor="password">Contraseña</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              placeholder="••••••••"
-              required
-            />
+          <div className="login-footer">
+            <p>¿No tienes una cuenta? <a href="/register">Regístrate</a></p>
+            <a href="/forgot-password">¿Olvidaste tu contraseña?</a>
           </div>
-          
-          <button 
-            type="submit" 
-            className="login-button"
-            disabled={isLoading}
-          >
-            {isLoading ? 'Iniciando sesión...' : 'Iniciar sesión'}
-          </button>
-        </form>
-        
-        <div className="login-footer">
-          <p>¿No tienes una cuenta? <Link to="/register" state={{ from: location.state?.from }}>Regístrate</Link></p>
-          <Link to="/forgot-password">¿Olvidaste tu contraseña?</Link>
         </div>
       </div>
     </div>
-  );
+  )
 };
 
 export default Login;
