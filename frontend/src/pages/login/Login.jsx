@@ -41,7 +41,7 @@ const Login = () => {
         // Guardar datos de usuario
         localStorage.setItem('user', JSON.stringify(data.user));
         // Redirigir al dashboard
-        navigate('/dashboard');
+        navigate('/');
       } else {
         setError(data.message || 'Credenciales incorrectas');
       }
