@@ -29,16 +29,48 @@ const Register = () => {
     }
   };
 
+  const focusFirstErrorField = () => {
+    const firstError = Object.keys(errors)[0];
+    if (firstError) {
+      document.getElementById(firstError)?.focus();
+    }
+  };
+
   const validateForm = () => {
     const newErrors = {};
     
-    if (!formData.nombre.trim()) newErrors.nombre = 'El nombre es requerido';
-    if (!formData.email.match(/^\S+@\S+\.\S+$/)) newErrors.email = 'Email inválido';
-    if (formData.password.length < 6) newErrors.password = 'La contraseña debe tener al menos 6 caracteres';
-    if (formData.password !== formData.confirmPassword) newErrors.confirmPassword = 'Las contraseñas no coinciden';
+    if (!formData.nombre.trim()) {
+      newErrors.nombre = 'El nombre es requerido';
+    } else if (formData.nombre.length < 2) {
+      newErrors.nombre = 'El nombre debe tener al menos 2 caracteres';
+    }
+    
+    if (!formData.email) {
+      newErrors.email = 'El email es requerido';
+    } else if (!formData.email.match(/^\S+@\S+\.\S+$/)) {
+      newErrors.email = 'Email inválido';
+    }
+    
+    if (!formData.password) {
+      newErrors.password = 'La contraseña es requerida';
+    } else if (formData.password.length < 6) {
+      newErrors.password = 'La contraseña debe tener al menos 6 caracteres';
+    }
+    
+    if (!formData.confirmPassword) {
+      newErrors.confirmPassword = 'Por favor confirma tu contraseña';
+    } else if (formData.password !== formData.confirmPassword) {
+      newErrors.confirmPassword = 'Las contraseñas no coinciden';
+    }
     
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    
+    if (Object.keys(newErrors).length > 0) {
+      focusFirstErrorField();
+      return false;
+    }
+    
+    return true;
   };
 
   const handleSubmit = async (e) => {
@@ -56,7 +88,7 @@ const Register = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          nombre: formData.nombre,
+          name: formData.nombre,
           email: formData.email,
           password: formData.password
         }),
@@ -64,11 +96,23 @@ const Register = () => {
 
       const data = await response.json();
 
-      if (response.ok) {
-        navigate('/login', { state: { registrationSuccess: true } });
-      } else {
-        setSubmitError(data.message || 'Error en el registro');
+      if (!response.ok) {
+        // Manejar errores específicos del backend
+        if (data.message.includes('email')) {
+          setErrors(prev => ({ ...prev, email: data.message }));
+        } else {
+          setSubmitError(data.message || 'Error en el registro');
+        }
+        return;
       }
+
+      // Registro exitoso
+      navigate('/login', { 
+        state: { 
+          registrationSuccess: true,
+          email: formData.email
+        } 
+      });
     } catch (error) {
       console.error('Error al conectar con el servidor:', error);
       setSubmitError('Error de conexión con el servidor');
@@ -85,7 +129,9 @@ const Register = () => {
           <h1 className="register-title">EVENTR</h1>
         </div>
 
-        {submitError && <div className="error-message">{submitError}</div>}
+        {submitError && !Object.keys(errors).length && (
+          <div className="error-message">{submitError}</div>
+        )}
 
         <form onSubmit={handleSubmit} className="register-form" noValidate>
           <div className={`form-group ${errors.nombre ? 'error' : ''}`}>
@@ -142,10 +188,17 @@ const Register = () => {
 
           <button 
             type="submit" 
-            className="register-button"
+            className={`register-button ${isSubmitting ? 'loading' : ''}`}
             disabled={isSubmitting}
           >
-            {isSubmitting ? 'Registrando...' : 'Registrarse'}
+            {isSubmitting ? (
+              <>
+                <span className="spinner"></span>
+                Registrando...
+              </>
+            ) : (
+              'Registrarse'
+            )}
           </button>
         </form>
 

@@ -1,146 +1,106 @@
-const User = require('../models/User');
-const bcrypt = require('bcryptjs');
-const { generateToken } = require('../helpers/jwt'); // Opcional para JWT
-//const { sendWelcomeEmail } = require('../helpers/email'); // Opcional para emails
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
+import User from '../models/User.js';
+import dotenv from 'dotenv';
 
-const register = async (req, res) => {
+dotenv.config();
+
+const generateToken = (userId) => {
+  return jwt.sign({ id: userId }, process.env.JWT_SECRET, {
+    expiresIn: '30d',
+  });
+};
+
+export const register = async (req, res) => {
   try {
-    const { nombre, email, password } = req.body;
+    const { name, email, password } = req.body;
 
-    // 1. Verificar si el usuario ya existe (redundante si usas express-validator)
-    const existingUser = await User.findByEmail(email);
-    if (existingUser) {
-      return res.status(409).json({
-        success: false,
-        message: 'El correo electrónico ya está registrado',
-        field: 'email'
-      });
+    // Validaciones básicas
+    if (!name || !email || !password) {
+      return res.status(400).json({ message: 'Por favor completa todos los campos' });
     }
 
-    // 2. Hash de la contraseña
+    // Verificar si el usuario ya existe
+    const existingUser = await User.findByEmail(email);
+    if (existingUser) {
+      return res.status(400).json({ message: 'El email ya está registrado' });
+    }
+
+    // Hash de la contraseña
     const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+    const passwordHash = await bcrypt.hash(password, salt);
 
-    // 3. Crear el usuario en la base de datos
-    const newUser = await User.create({
-      nombre,
+    // Crear usuario
+    const userId = await User.create({
+      name,
       email,
-      password: hashedPassword
+      passwordHash
     });
 
-    // 4. Generar token JWT (opcional)
-    const token = generateToken(newUser.id);
+    // Generar token
+    const token = generateToken(userId);
 
-    // 5. Enviar email de bienvenida (opcional)
-    //await sendWelcomeEmail(email, nombre);
+    // Obtener datos del usuario sin la contraseña
+    const user = await User.findById(userId);
 
-    // 6. Responder sin enviar datos sensibles
     res.status(201).json({
-      success: true,
       message: 'Usuario registrado exitosamente',
-      user: {
-        id: newUser.id,
-        nombre: newUser.nombre,
-        email: newUser.email,
-        createdAt: newUser.fecha_creacion
-      },
-      token // Opcional
+      user,
+      token
     });
-
   } catch (error) {
-    console.error('Error en el registro:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Error en el servidor al registrar usuario',
-      error: process.env.NODE_ENV === 'development' ? error.message : undefined
-    });
+    console.error('Error en registro:', error);
+    res.status(500).json({ message: 'Error en el servidor' });
   }
 };
 
-// Función de login (adicional por si la necesitas)
-const login = async (req, res) => {
+export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // 1. Verificar si el usuario existe
+    // Validaciones básicas
+    if (!email || !password) {
+      return res.status(400).json({ message: 'Por favor proporciona email y contraseña' });
+    }
+
+    // Verificar si el usuario existe
     const user = await User.findByEmail(email);
     if (!user) {
-      return res.status(401).json({
-        success: false,
-        message: 'Credenciales inválidas',
-        field: 'email'
-      });
+      return res.status(401).json({ message: 'Credenciales inválidas' });
     }
 
-    // 2. Comparar contraseñas
-    const isMatch = await bcrypt.compare(password, user.contraseña);
+    // Verificar contraseña
+    const isMatch = await bcrypt.compare(password, user.password_hash);
     if (!isMatch) {
-      return res.status(401).json({
-        success: false,
-        message: 'Credenciales inválidas',
-        field: 'password'
-      });
+      return res.status(401).json({ message: 'Credenciales inválidas' });
     }
 
-    // 3. Generar token JWT
+    // Generar token
     const token = generateToken(user.id);
 
-    // 4. Responder sin datos sensibles
+    // Obtener datos del usuario sin la contraseña
+    const userData = await User.findById(user.id);
+
     res.json({
-      success: true,
       message: 'Inicio de sesión exitoso',
-      user: {
-        id: user.id,
-        nombre: user.nombre,
-        email: user.email
-      },
+      user: userData,
       token
     });
-
   } catch (error) {
-    console.error('Error en el login:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Error en el servidor al iniciar sesión',
-      error: process.env.NODE_ENV === 'development' ? error.message : undefined
-    });
+    console.error('Error en login:', error);
+    res.status(500).json({ message: 'Error en el servidor' });
   }
 };
 
-// Función para obtener usuario actual (opcional)
-const getCurrentUser = async (req, res) => {
+export const getMe = async (req, res) => {
   try {
-    // El usuario viene del middleware de autenticación
     const user = await User.findById(req.user.id);
-    
     if (!user) {
-      return res.status(404).json({
-        success: false,
-        message: 'Usuario no encontrado'
-      });
+      return res.status(404).json({ message: 'Usuario no encontrado' });
     }
-
-    res.json({
-      success: true,
-      user: {
-        id: user.id,
-        nombre: user.nombre,
-        email: user.email,
-        createdAt: user.fecha_creacion
-      }
-    });
-
+    res.json(user);
   } catch (error) {
     console.error('Error al obtener usuario:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Error en el servidor al obtener usuario'
-    });
+    res.status(500).json({ message: 'Error en el servidor' });
   }
-};
-
-module.exports = {
-  register,
-  login,
-  getCurrentUser
 };
