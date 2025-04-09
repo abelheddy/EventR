@@ -1,0 +1,126 @@
+.contacto-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+    padding: 20px;
+  }
+  
+  .contacto-container {
+    max-width: 600px;
+    width: 100%;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .contacto-header {
+    margin-bottom: 20px;
+  }
+  
+  .contacto-logo {
+    height: 60px;
+    margin-bottom: 10px;
+  }
+  
+  .contacto-title {
+    color: #4285f4;
+    margin: 0;
+  }
+  
+  .contacto-message {
+    margin-bottom: 25px;
+    color: #555;
+  }
+  
+  .contacto-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+  
+  .form-group label {
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  .form-group textarea {
+    resize: vertical;
+  }
+  
+  .form-group.error input,
+  .form-group.error textarea {
+    border-color: #ff4444;
+  }
+  
+  .error-text {
+    color: #ff4444;
+    font-size: 0.85rem;
+    margin-top: 5px;
+  }
+  
+  .contacto-button {
+    background-color: #4285f4;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .contacto-button:hover {
+    background-color: #3367d6;
+  }
+  
+  .contacto-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .success-message {
+    color: #34a853;
+    background-color: #e6f4ea;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .error-message {
+    color: #ff4444;
+    background-color: #ffebee;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .back-link {
+    margin-top: 20px;
+  }
+  
+  .back-link a {
+    color: #4285f4;
+    text-decoration: none;
+  }
+  
+  .back-link a:hover {
+    text-decoration: underline;
+  }
