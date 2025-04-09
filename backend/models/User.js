@@ -7,7 +7,7 @@ class User {
     const hashedPassword = await bcrypt.hash(password, 10);
     
     const [result] = await db.execute(
-      'INSERT INTO usuarios (nombre, correo, contraseña) VALUES (?, ?, ?)',
+      'INSERT INTO usuarios (nombre, correo, contrasena) VALUES (?, ?, ?)',
       [nombre, email, hashedPassword]
     );
     
