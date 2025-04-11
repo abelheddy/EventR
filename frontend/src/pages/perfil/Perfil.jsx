@@ -1,6 +1,6 @@
 import React from 'react';
 import './css/Perfil.css';
-
+import { Link } from 'react-router-dom';
 const Perfil = () => {
   // Datos de ejemplo
   const userData = {
@@ -34,7 +34,8 @@ const Perfil = () => {
             <p className="usuario-email">{userData.email}</p>
             <p className="usuario-descripcion">{userData.descripcion}</p>
           </div>
-          <button className="agregar-evento-btn">Agregar Evento</button>
+          <Link to="/formulario-perfil" className="agregar-evento-btn">Editar Perfil</Link>
+          <Link to="/formulario-evento" className="agregar-evento-btn">Agregar Evento</Link>
         </div>
 
         {/* Historial de eventos (derecha) */}

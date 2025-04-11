@@ -23,6 +23,7 @@
     display: flex;
     flex-direction: column;
     height: fit-content;
+    
   }
   
   .usuario-titulo {
@@ -63,6 +64,8 @@
     width: 100%;
     transition: background-color 0.3s;
     font-weight: bold;
+    text-align: center;
+    
   }
   
   .agregar-evento-btn:hover {
