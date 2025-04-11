@@ -183,7 +183,7 @@ const Login = () => {
           
           <div className="login-footer">
             <p>¿No tienes una cuenta? <Link to="/register">Regístrate</Link></p>
-            <Link to="/forgot-password">¿Olvidaste tu contraseña?</Link>
+            <Link to="/Reset-Password">¿Olvidaste tu contraseña?</Link>
           </div>
         </div>
       </div>

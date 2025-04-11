@@ -11,6 +11,8 @@ import Reg from './pages/register/register'; // importa la página de registro
 import Mante from './pages/mantenimiento/mantenimiento'; // importa la página de mantenimiento
 import Perfil from './pages/perfil/Perfil' //importa la paguina de Perfil
 import Contacto from './pages/contacto/Contacto'; // importa la página de contacto
+import ForgotPassword from './pages/resetPassword/ForgotPassword'; // importa la página de recuperación de contraseña
+
 
 
 // Componente para rutas protegidas
@@ -45,6 +47,7 @@ function App() {
                         <Route path="*" element={<Navigate to="/" replace />} />
                         <Route path="/perfil" element={<Perfil/>}/>
                         <Route path="/contacto" element={<Contacto/>}/>
+                        <Route path="/Reset-Password" element={<ForgotPassword/>}/>
                     </Routes>
                 </main>
                 <Footer />
