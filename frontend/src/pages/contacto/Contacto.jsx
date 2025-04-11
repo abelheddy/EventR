@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './css/contacto.css';
-import logo from '../../assets/logo.png'; // Asegúrate de que la ruta sea correcta
+import logo from '../../assets/logo.png';
 
 const Contacto = () => {
   const [formData, setFormData] = useState({
     nombre: '',
     email: '',
-    mensaje: ''
+    mensaje: '',
+    honeypot: ''
   });
 
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null); // null, 'success', 'error'
+  const [submitStatus, setSubmitStatus] = useState(null);
+  const [submitError, setSubmitError] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,10 +23,10 @@ const Contacto = () => {
       [name]: value
     }));
 
-    // Limpiar errores al escribir
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
     }
+    if (submitError) setSubmitError('');
   };
 
   const validateForm = () => {
@@ -55,8 +57,10 @@ const Contacto = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitStatus(null);
+    setSubmitError('');
 
     if (!validateForm()) return;
+    if (formData.honeypot) return; // Detectar bots
 
     setIsSubmitting(true);
 
@@ -66,7 +70,11 @@ const Contacto = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          nombre: formData.nombre,
+          email: formData.email,
+          mensaje: formData.mensaje
+        }),
       });
 
       const data = await response.json();
@@ -77,7 +85,7 @@ const Contacto = () => {
       }
 
       setSubmitStatus('success');
-      setFormData({ nombre: '', email: '', mensaje: '' });
+      setFormData({ nombre: '', email: '', mensaje: '', honeypot: '' });
     } catch (error) {
       setSubmitError('Error de conexión con el servidor');
       console.error('Error:', error);
@@ -104,15 +112,28 @@ const Contacto = () => {
           </div>
         )}
 
-        {submitStatus === 'error' && (
+        {(submitStatus === 'error' || submitError) && (
           <div className="error-message">
-            Ocurrió un error al enviar tu mensaje. Por favor intenta nuevamente.
+            {submitError || 'Ocurrió un error al enviar tu mensaje. Por favor intenta nuevamente.'}
           </div>
         )}
 
         <form onSubmit={handleSubmit} className="contacto-form" noValidate>
+          {/* Campo honeypot para bots */}
+          <input
+            type="text"
+            name="honeypot"
+            className="honeypot"
+            tabIndex="-1"
+            autoComplete="off"
+            value={formData.honeypot}
+            onChange={handleChange}
+          />
+
           <div className={`form-group ${errors.nombre ? 'error' : ''}`}>
-            <label htmlFor="nombre">Nombre</label>
+            <label htmlFor="nombre">
+              Nombre <span className="required">*</span>
+            </label>
             <input
               type="text"
               id="nombre"
@@ -125,7 +146,9 @@ const Contacto = () => {
           </div>
 
           <div className={`form-group ${errors.email ? 'error' : ''}`}>
-            <label htmlFor="email">Correo electrónico</label>
+            <label htmlFor="email">
+              Correo electrónico <span className="required">*</span>
+            </label>
             <input
               type="email"
               id="email"
@@ -138,7 +161,9 @@ const Contacto = () => {
           </div>
 
           <div className={`form-group ${errors.mensaje ? 'error' : ''}`}>
-            <label htmlFor="mensaje">Mensaje</label>
+            <label htmlFor="mensaje">
+              Mensaje <span className="required">*</span>
+            </label>
             <textarea
               id="mensaje"
               name="mensaje"
@@ -149,6 +174,10 @@ const Contacto = () => {
             />
             {errors.mensaje && <span className="error-text">{errors.mensaje}</span>}
           </div>
+
+          <p className="required-info">
+            <span className="required">*</span> Campos obligatorios
+          </p>
 
           <button
             type="submit"
@@ -171,7 +200,6 @@ const Contacto = () => {
         </div>
       </div>
     </div>
-
   );
 };
 
