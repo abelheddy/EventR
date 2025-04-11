@@ -1,0 +1,277 @@
+.mainPage {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Hero Section */
+.hero {
+  background: center/cover no-repeat;
+  color: white;
+  padding: 100px 20px;
+  text-align: center;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.searchBar {
+  display: flex;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.searchBar input {
+  flex: 1;
+  padding: 15px;
+  border: none;
+  border-radius: 5px 0 0 5px;
+  font-size: 1rem;
+}
+
+.searchButton {
+  padding: 15px 25px;
+  background-color: #ff5a5f;
+  color: white;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.searchButton:hover {
+  background-color: #e04a50;
+}
+
+/* Categories Section */
+.categoriesSection {
+  margin: 50px 0;
+}
+
+.categoriesSection h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2rem;
+}
+
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.categoryBtn {
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.categoryBtn:hover, 
+.categoryBtn.active {
+  background-color: #ff5a5f;
+  color: white;
+}
+
+/* Events Grid */
+.eventsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.eventCard {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.eventCard:hover {
+  transform: translateY(-5px);
+}
+
+.eventCard img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.eventInfo {
+  padding: 20px;
+}
+
+.eventInfo h3 {
+  margin: 0 0 10px;
+  font-size: 1.2rem;
+}
+
+.eventDate, 
+.eventLocation {
+  color: #666;
+  margin: 5px 0;
+  font-size: 0.9rem;
+}
+
+.eventPrice {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #ff5a5f;
+  margin: 15px 0;
+}
+
+.viewDetails {
+  display: inline-block;
+  padding: 8px 15px;
+  background-color: #333;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
+
+.viewDetails:hover {
+  background-color: #ff5a5f;
+}
+
+/* All Events Section */
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 50px 0 30px;
+}
+
+.sectionHeader h2 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.viewAll {
+  color: #ff5a5f;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.eventsList {
+  display: grid;
+  gap: 20px;
+}
+
+.eventItem {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.eventThumbnail {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.eventDetails {
+  flex: 1;
+}
+
+.eventMeta {
+  color: #666;
+  margin: 5px 0;
+}
+
+.eventActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.buyBtn {
+  padding: 8px 20px;
+  background-color: #ff5a5f;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.buyBtn:hover {
+  background-color: #e04a50;
+}
+
+/* CTA Section */
+.ctaSection {
+  background-color: #f8f9fa;
+  padding: 60px 20px;
+  text-align: center;
+  border-radius: 10px;
+  margin: 50px 0;
+}
+
+.ctaContent h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.ctaContent p {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 30px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ctaButton {
+  display: inline-block;
+  padding: 15px 30px;
+  background-color: #333;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.ctaButton:hover {
+  background-color: #ff5a5f;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+  
+  .eventItem {
+    flex-direction: column;
+  }
+  
+  .eventThumbnail {
+    width: 100%;
+    height: auto;
+  }
+}

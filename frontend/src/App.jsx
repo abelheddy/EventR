@@ -12,6 +12,7 @@ import Mante from './pages/mantenimiento/mantenimiento'; // importa la página d
 import Perfil from './pages/perfil/Perfil' //importa la paguina de Perfil
 import Contacto from './pages/contacto/Contacto'; // importa la página de contacto
 import ForgotPassword from './pages/resetPassword/ForgotPassword'; // importa la página de recuperación de contraseña
+import MainPage2 from './pages/mainPagev2/MainPage'; // importa la página de eventos
 
 
 
@@ -40,7 +41,8 @@ function App() {
                 <Header />
                 <main className="main-content">
                     <Routes>
-                        <Route path="/" element={<MainPage />} />
+                        {/*<Route path="/" element={<MainPage />} />*/}
+                        <Route path="/" element={<MainPage2 />} />
                         <Route path="/register" element={<Reg />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/mantenimiento" element={<Mante />} />
