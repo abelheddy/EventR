@@ -20,7 +20,7 @@ const Contacto = () => {
       ...prev,
       [name]: value
     }));
-    
+
     // Limpiar errores al escribir
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
@@ -29,11 +29,11 @@ const Contacto = () => {
 
   const validateForm = () => {
     const newErrors = {};
-    
+
     if (!formData.nombre.trim()) newErrors.nombre = 'El nombre es requerido';
     if (!formData.email.match(/^\S+@\S+\.\S+$/)) newErrors.email = 'Email inválido';
     if (formData.mensaje.length < 10) newErrors.mensaje = 'El mensaje debe tener al menos 10 caracteres';
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -41,11 +41,11 @@ const Contacto = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitStatus(null);
-    
+
     if (!validateForm()) return;
-    
+
     setIsSubmitting(true);
-    
+
     try {
       // Aquí iría la conexión con el backend si decides guardar en DB
       const response = await fetch('http://localhost:5000/api/contacto', {
@@ -95,7 +95,7 @@ const Contacto = () => {
         )}
 
         <form onSubmit={handleSubmit} className="contacto-form" noValidate>
-          <div className={form-group ${errors.nombre ? 'error' : ''}}>
+          <div className={`form-group ${errors.nombre ? 'error' : ''}`}>
             <label htmlFor="nombre">Nombre</label>
             <input
               type="text"
@@ -108,7 +108,7 @@ const Contacto = () => {
             {errors.nombre && <span className="error-text">{errors.nombre}</span>}
           </div>
 
-          <div className={form-group ${errors.email ? 'error' : ''}}>
+          <div className={`form-group ${errors.email ? 'error' : ''}`}>
             <label htmlFor="email">Correo electrónico</label>
             <input
               type="email"
@@ -121,7 +121,7 @@ const Contacto = () => {
             {errors.email && <span className="error-text">{errors.email}</span>}
           </div>
 
-          <div className={form-group ${errors.mensaje ? 'error' : ''}}>
+          <div className={`form-group ${errors.mensaje ? 'error' : ''}`}>
             <label htmlFor="mensaje">Mensaje</label>
             <textarea
               id="mensaje"
@@ -134,8 +134,8 @@ const Contacto = () => {
             {errors.mensaje && <span className="error-text">{errors.mensaje}</span>}
           </div>
 
-          <button 
-            type="submit" 
+          <button
+            type="submit"
             className="contacto-button"
             disabled={isSubmitting}
           >
@@ -148,6 +148,7 @@ const Contacto = () => {
         </div>
       </div>
     </div>
+
   );
 };
 
