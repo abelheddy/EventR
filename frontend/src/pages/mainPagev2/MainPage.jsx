@@ -147,7 +147,7 @@ const MainPage = () => {
           <div className={styles.ctaContent}>
             <h2>¿Tienes un evento para promocionar?</h2>
             <p>Llega a miles de personas interesadas en asistir a eventos como el tuyo</p>
-            <Link to="/create-event" className={styles.ctaButton}>Publicar Evento</Link>
+            <Link to="/publish-guide" className={styles.ctaButton}>Publicar Evento</Link>
           </div>
         </section>
       </div>

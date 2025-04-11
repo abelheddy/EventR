@@ -13,6 +13,7 @@ import Perfil from './pages/perfil/Perfil' //importa la paguina de Perfil
 import Contacto from './pages/contacto/Contacto'; // importa la página de contacto
 import ForgotPassword from './pages/resetPassword/ForgotPassword'; // importa la página de recuperación de contraseña
 import MainPage2 from './pages/mainPagev2/MainPage'; // importa la página de eventos
+import PublishGuide from './pages/PublishGuide/PublishGuide'; // importa la guía de publicación
 
 
 
@@ -50,6 +51,8 @@ function App() {
                         <Route path="/perfil" element={<Perfil/>}/>
                         <Route path="/contacto" element={<Contacto/>}/>
                         <Route path="/Reset-Password" element={<ForgotPassword/>}/>
+                        <Route path="/publish-guide" element={<PublishGuide/>}/>
+                        {/* Rutas protegidas */}
                     </Routes>
                 </main>
                 <Footer />

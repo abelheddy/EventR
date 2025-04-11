@@ -1,0 +1,216 @@
+.guideContainer {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+  }
+  
+  .guideTitle {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    font-size: 2.2rem;
+    font-weight: 700;
+  }
+  
+  .guideSubtitle {
+    text-align: center;
+    color: #7f8c8d;
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+    font-weight: 400;
+  }
+  
+  .stepsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .stepCard {
+    display: flex;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    border: 1px solid #eaeaea;
+  }
+  
+  .stepNumber {
+    background-color: #ff5a5f;
+    color: white;
+    font-size: 1.8rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 80px;
+  }
+  
+  .stepContent {
+    padding: 1.8rem;
+    flex: 1;
+  }
+  
+  .stepContent h3 {
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+  
+  .stepContent p {
+    color: #34495e;
+    line-height: 1.7;
+    margin-bottom: 1.2rem;
+    font-size: 1rem;
+  }
+  
+  .stepImage {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 1.5rem auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #f0f0f0;
+  }
+  
+  .verifiedStep {
+    display: flex;
+    align-items: center;
+    color: #27ae60;
+    font-weight: 500;
+    gap: 0.5rem;
+  }
+  
+  .verifiedIcon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .note {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    font-style: italic;
+    margin-top: 1rem;
+  }
+  
+  .formTips {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin-top: 1.5rem;
+  }
+  
+  .tipItem {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  
+  .tipIcon {
+    font-size: 1.4rem;
+    margin-top: 0.2rem;
+  }
+  
+  .tipItem strong {
+    color: #2c3e50;
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+  
+  .tipItem p {
+    margin: 0;
+    color: #7f8c8d;
+    font-size: 0.9rem;
+  }
+  
+  .ctaSection {
+    margin-top: 2rem;
+    text-align: center;
+  }
+  
+  .primaryButton {
+    background-color: #ff5a5f;
+    color: white;
+    padding: 0.8rem 1.8rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .primaryButton:hover {
+    background-color: #e04a50;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(224, 74, 80, 0.2);
+  }
+  
+  .helpText {
+    margin-top: 1rem;
+    color: #7f8c8d;
+    font-size: 0.9rem;
+  }
+  
+  .inlineLink {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .inlineLink:hover {
+    text-decoration: underline;
+  }
+  
+  .highlightLink {
+    color: #ff5a5f;
+    font-weight: 600;
+    text-decoration: none;
+    margin: 0 0.3rem;
+  }
+  
+  .highlightLink:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .stepCard {
+      flex-direction: column;
+    }
+    
+    .stepNumber {
+      min-width: 100%;
+      padding: 0.8rem 0;
+      font-size: 1.5rem;
+    }
+    
+    .guideTitle {
+      font-size: 1.8rem;
+    }
+    
+    .guideSubtitle {
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .stepContent {
+      padding: 1.5rem;
+    }
+    
+    .formTips {
+      gap: 1rem;
+    }
+    
+    .tipItem {
+      gap: 0.8rem;
+    }
+  }
