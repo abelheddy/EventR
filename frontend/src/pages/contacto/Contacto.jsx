@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './css/contacto.css';
-import logo from '../assets/logo.png';
+import logo from '../../assets/logo.png'; // Asegúrate de que la ruta sea correcta
 
 const Contacto = () => {
   const [formData, setFormData] = useState({
@@ -30,9 +30,23 @@ const Contacto = () => {
   const validateForm = () => {
     const newErrors = {};
 
-    if (!formData.nombre.trim()) newErrors.nombre = 'El nombre es requerido';
-    if (!formData.email.match(/^\S+@\S+\.\S+$/)) newErrors.email = 'Email inválido';
-    if (formData.mensaje.length < 10) newErrors.mensaje = 'El mensaje debe tener al menos 10 caracteres';
+    if (!formData.nombre.trim()) {
+      newErrors.nombre = 'El nombre es requerido';
+    } else if (formData.nombre.length < 2) {
+      newErrors.nombre = 'El nombre debe tener al menos 2 caracteres';
+    }
+
+    if (!formData.email) {
+      newErrors.email = 'El email es requerido';
+    } else if (!formData.email.match(/^\S+@\S+\.\S+$/)) {
+      newErrors.email = 'Por favor ingresa un email válido';
+    }
+
+    if (!formData.mensaje) {
+      newErrors.mensaje = 'El mensaje es requerido';
+    } else if (formData.mensaje.length < 10) {
+      newErrors.mensaje = 'El mensaje debe tener al menos 10 caracteres';
+    }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -47,7 +61,6 @@ const Contacto = () => {
     setIsSubmitting(true);
 
     try {
-      // Aquí iría la conexión con el backend si decides guardar en DB
       const response = await fetch('http://localhost:5000/api/contacto', {
         method: 'POST',
         headers: {
@@ -56,15 +69,18 @@ const Contacto = () => {
         body: JSON.stringify(formData),
       });
 
-      if (response.ok) {
-        setSubmitStatus('success');
-        setFormData({ nombre: '', email: '', mensaje: '' });
-      } else {
-        setSubmitStatus('error');
+      const data = await response.json();
+
+      if (!response.ok) {
+        setSubmitError(data.message || 'Error al enviar el formulario');
+        return;
       }
+
+      setSubmitStatus('success');
+      setFormData({ nombre: '', email: '', mensaje: '' });
     } catch (error) {
-      console.error('Error al enviar el mensaje:', error);
-      setSubmitStatus('error');
+      setSubmitError('Error de conexión con el servidor');
+      console.error('Error:', error);
     } finally {
       setIsSubmitting(false);
     }
@@ -136,10 +152,17 @@ const Contacto = () => {
 
           <button
             type="submit"
-            className="contacto-button"
+            className={`contacto-button ${isSubmitting ? 'loading' : ''}`}
             disabled={isSubmitting}
           >
-            {isSubmitting ? 'Enviando...' : 'Enviar Mensaje'}
+            {isSubmitting ? (
+              <>
+                <span className="spinner"></span>
+                Enviando...
+              </>
+            ) : (
+              'Enviar Mensaje'
+            )}
           </button>
         </form>
 

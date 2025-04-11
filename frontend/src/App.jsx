@@ -10,6 +10,7 @@ import MainPage from './pages/MainPage'; // Importa la página MainPage
 import Reg from './pages/register/register'; // importa la página de registro
 import Mante from './pages/mantenimiento/mantenimiento'; // importa la página de mantenimiento
 import Perfil from './pages/perfil/Perfil' //importa la paguina de Perfil
+import Contacto from './pages/contacto/Contacto'; // importa la página de contacto
 
 
 // Componente para rutas protegidas
@@ -43,6 +44,7 @@ function App() {
                         <Route path="/mantenimiento" element={<Mante />} />
                         <Route path="*" element={<Navigate to="/" replace />} />
                         <Route path="/perfil" element={<Perfil/>}/>
+                        <Route path="/contacto" element={<Contacto/>}/>
                     </Routes>
                 </main>
                 <Footer />

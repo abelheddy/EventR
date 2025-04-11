@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 50vh;
     background-color: #f5f5f5;
     padding: 20px;
   }
@@ -27,7 +27,7 @@
   }
   
   .contacto-title {
-    color: #4285f4;
+    color: #000000;
     margin: 0;
   }
   
@@ -77,7 +77,7 @@
   }
   
   .contacto-button {
-    background-color: #4285f4;
+    background-color: #ff4444;
     color: white;
     border: none;
     padding: 12px;
@@ -88,7 +88,7 @@
   }
   
   .contacto-button:hover {
-    background-color: #3367d6;
+    background-color: #cc0000;
   }
   
   .contacto-button:disabled {
@@ -117,10 +117,30 @@
   }
   
   .back-link a {
-    color: #4285f4;
+    color: #ff4444;
     text-decoration: none;
   }
   
   .back-link a:hover {
+    color: #cc0000;
     text-decoration: underline;
+  }
+  .spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s ease-in-out infinite;
+    margin-right: 8px;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  .contacto-button.loading {
+    opacity: 0.7;
+    cursor: not-allowed;
   }
