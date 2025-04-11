@@ -36,10 +36,10 @@ const Header = () => {
 
         {/* Menú de navegación */}
         <ul className="nav-menu">
-          <li><Link to="/destacados" className="nav-link">Destacados</Link></li>
+          <li><Link to="/mantenimiento" className="nav-link">Destacados</Link></li>
           <li><Link to="/contacto" className="nav-link">Contacto</Link></li>
           {isAuthenticated && (
-            <li><Link to="/mis-eventos" className="nav-link">Mis Eventos</Link></li>
+            <li><Link to="/mantenimiento" className="nav-link">Mis Eventos</Link></li>
           )}
         </ul>
 
@@ -59,7 +59,7 @@ const Header = () => {
               </div>
               <div className="dropdown-menu">
                 <Link to="/perfil" className="dropdown-item">Mi Perfil</Link>
-                <Link to="/configuracion" className="dropdown-item">Configuración</Link>
+                <Link to="/mantenimiento" className="dropdown-item">Configuración</Link>
                 <button onClick={logout} className="dropdown-item logout-button">
                   Cerrar sesión
                 </button>
