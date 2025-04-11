@@ -1,3 +1,4 @@
+/* ESTILOS BASE - Sin cambios */
 .mainPage {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #333;
@@ -6,7 +7,7 @@
   padding: 0 20px;
 }
 
-/* Hero Section */
+/* HERO SECTION - Sin cambios */
 .hero {
   background: center/cover no-repeat;
   color: white;
@@ -55,15 +56,24 @@
   background-color: #e04a50;
 }
 
-/* Categories Section */
-.categoriesSection {
-  margin: 50px 0;
+/* ------------------------- */
+/* CAMBIOS PRINCIPALES: */
+/* ------------------------- */
+
+/* ESTILOS COMPARTIDOS PARA TÍTULOS */
+.sectionTitle {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  width: 100%;
 }
 
-.categoriesSection h2 {
-  text-align: center;
-  margin-bottom: 30px;
-  font-size: 2rem;
+/* CATEGORÍAS - Estructura modificada */
+.categoriesContainer {
+  display: flex;
+  flex-direction: column; /* Organización vertical */
+  align-items: center; /* Centrado horizontal */
+  margin: 50px 0;
 }
 
 .categories {
@@ -71,6 +81,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 15px;
+  width: 100%; /* Ocupa todo el ancho disponible */
 }
 
 .categoryBtn {
@@ -88,13 +99,36 @@
   color: white;
 }
 
-/* Events Grid */
+/* EVENTOS DESTACADOS - Nueva estructura */
+.featuredEventsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px 0;
+}
+
 .eventsGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 25px;
-  margin-top: 30px;
+  width: 100%; /* Aseguramos que ocupe todo el ancho */
 }
+
+/* PRÓXIMOS EVENTOS - Reorganizado */
+.upcomingEventsContainer {
+  margin: 50px 0;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between; /* Título a la izquierda, link a la derecha */
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+/* ------------------------- */
+/* ESTILOS DE COMPONENTES - Sin cambios */
+/* ------------------------- */
 
 .eventCard {
   background: white;
@@ -152,25 +186,6 @@
   background-color: #ff5a5f;
 }
 
-/* All Events Section */
-.sectionHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 50px 0 30px;
-}
-
-.sectionHeader h2 {
-  font-size: 2rem;
-  margin: 0;
-}
-
-.viewAll {
-  color: #ff5a5f;
-  text-decoration: none;
-  font-weight: bold;
-}
-
 .eventsList {
   display: grid;
   gap: 20px;
@@ -222,7 +237,13 @@
   background-color: #e04a50;
 }
 
-/* CTA Section */
+.viewAll {
+  color: #ff5a5f;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* CTA SECTION - Sin cambios */
 .ctaSection {
   background-color: #f8f9fa;
   padding: 60px 20px;
@@ -260,7 +281,7 @@
   background-color: #ff5a5f;
 }
 
-/* Responsive */
+/* RESPONSIVE - Ajustes menores */
 @media (max-width: 768px) {
   .hero h1 {
     font-size: 2rem;
@@ -273,5 +294,10 @@
   .eventThumbnail {
     width: 100%;
     height: auto;
+  }
+
+  /* Aseguramos que los títulos sigan centrados en móvil */
+  .sectionTitle {
+    text-align: center;
   }
 }
