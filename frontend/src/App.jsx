@@ -14,6 +14,7 @@ import Contacto from './pages/contacto/Contacto'; // importa la página de conta
 import ForgotPassword from './pages/resetPassword/ForgotPassword'; // importa la página de recuperación de contraseña
 import MainPage2 from './pages/mainPagev2/MainPage'; // importa la página de eventos
 import PublishGuide from './pages/PublishGuide/PublishGuide'; // importa la guía de publicación
+import FormularioEvento from './pages/FormularioEventos/FormularioEventos'; // importa la página de eventos
 
 
 
@@ -52,6 +53,7 @@ function App() {
                         <Route path="/contacto" element={<Contacto/>}/>
                         <Route path="/Reset-Password" element={<ForgotPassword/>}/>
                         <Route path="/publish-guide" element={<PublishGuide/>}/>
+                        <Route path="/Formu-Event" element={<FormularioEvento/>}/>
                         {/* Rutas protegidas */}
                     </Routes>
                 </main>

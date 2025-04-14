@@ -35,7 +35,7 @@ const Perfil = () => {
             <p className="usuario-descripcion">{userData.descripcion}</p>
           </div>
           <Link to="/mantenimiento" className="agregar-evento-btn">Editar Perfil</Link>
-          <Link to="/formulario-evento" className="agregar-evento-btn">Agregar Evento</Link>
+          <Link to="/Formu-Event" className="agregar-evento-btn">Agregar Evento</Link>
         </div>
 
         {/* Historial de eventos (derecha) */}
