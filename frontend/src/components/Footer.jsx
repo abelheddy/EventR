@@ -12,7 +12,7 @@ const Footer = () => {
         <div className="developer-column">
           <p className="developer-title-exact">Desarrollado por:</p>
           <div className="developer-names-exact">
-            <span>Diego Enrique Marques Ludo</span>
+            <span>Diego Enrique Marquez Ludo</span>
             <span>Yael Otamendi Salazar</span>
             <span>Brian Andrei Rosas Mendoza</span>
           </div>
