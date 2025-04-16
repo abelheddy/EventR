@@ -1,0 +1,279 @@
+/* styles/main.css */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f3f4f6;
+  }
+  
+  .event-page {
+    min-height: 100vh;
+  }
+  
+  .hero-section {
+    position: relative;
+    height: 400px;
+    background-color: #000000;
+    overflow: hidden;
+  }
+  
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.7;
+  }
+  
+  .hero-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: 1rem;
+  }
+  
+  .nav-tabs {
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  
+  .tab-container {
+    display: flex;
+    overflow-x: auto;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .tab-button {
+    padding: 1rem 1.5rem;
+    font-weight: 500;
+    white-space: nowrap;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #4b5563;
+  }
+  
+  .tab-button:hover {
+    color: #ff5a5f;
+  }
+  
+  .tab-button.active {
+    color: #ff5a5f;
+    border-bottom: 2px solid #ff5a5f;
+  }
+  
+  .main-content {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  
+  /* Estilos para EventSection */
+  .event-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  @media (min-width: 768px) {
+    .event-container {
+      flex-direction: row;
+    }
+  }
+  
+  .event-image-container {
+    position: relative;
+    flex: 1;
+  }
+  
+  .event-image {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  
+  .share-button {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background-color: black;
+    padding: 0.5rem;
+    border-radius: 9999px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    cursor: pointer;
+  }
+  
+  .event-details {
+    flex: 1;
+  }
+  
+  .event-title {
+    font-size: 1.875rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .event-subtitle {
+    font-size: 1.25rem;
+    color: #4b5563;
+    margin-bottom: 1rem;
+  }
+  
+  .price-date-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .event-price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff5a5f;
+  }
+  
+  .event-date {
+    color: #6b7280;
+  }
+  
+  .buy-button {
+    background-color: #ff5a5f;
+    color: white;
+    font-weight: bold;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 1.5rem;
+    width: 100%;
+  }
+  
+  @media (min-width: 768px) {
+    .buy-button {
+      width: auto;
+    }
+  }
+  
+  .description-toggle {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #f9fafb;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .description-content {
+    padding: 1rem;
+    background-color: white;
+  }
+  
+  /* Estilos para GallerySection */
+  .gallery-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+  }
+  
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
+  }
+  
+  @media (min-width: 640px) {
+    .gallery-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .gallery-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .gallery-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  .gallery-item {
+    overflow: hidden;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  
+  .gallery-image {
+    width: 100%;
+    height: 12rem;
+    object-fit: cover;
+  }
+  
+  /* Estilos para LocationSection */
+  .location-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+  }
+  
+  .map-container {
+    background-color: #e5e7eb;
+    height: 24rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .map-icon {
+    width: 4rem;
+    height: 4rem;
+    color: #ef4444;
+  }
+  
+  .map-address {
+    margin-top: 0.5rem;
+    font-weight: 500;
+  }
+  
+  /* Estilos para DetailsSection */
+  .details-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  @media (min-width: 768px) {
+    .details-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  .details-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+  }
+  
+  .detail-item {
+    margin-bottom: 1rem;
+  }
+  
+  .detail-label {
+    font-weight: bold;
+    font-size: 1.125rem;
+    margin-bottom: 0.25rem;
+  }

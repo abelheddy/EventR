@@ -15,6 +15,7 @@ import ForgotPassword from './pages/resetPassword/ForgotPassword'; // importa la
 import MainPage2 from './pages/mainPagev2/MainPage'; // importa la página de eventos
 import PublishGuide from './pages/PublishGuide/PublishGuide'; // importa la guía de publicación
 import FormularioEvento from './pages/FormularioEventos/FormularioEventos'; // importa la página de eventos
+import Evento from './pages/paginaEvento/paginaEvento'; //importa la paguina de evento 
 
 
 
@@ -54,6 +55,7 @@ function App() {
                         <Route path="/Reset-Password" element={<ForgotPassword/>}/>
                         <Route path="/publish-guide" element={<PublishGuide/>}/>
                         <Route path="/Formu-Event" element={<FormularioEvento/>}/>
+                        <Route path="/event/2" element={<Evento/>}/>
                         {/* Rutas protegidas */}
                     </Routes>
                 </main>
