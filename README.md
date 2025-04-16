@@ -15,8 +15,8 @@
 EventR es una aplicación de gestión de eventos diseñada para facilitar la organización y participación en eventos. Este manual proporciona toda la información necesaria para que los desarrolladores puedan configurar, ejecutar y contribuir al proyecto.
 
 ## Requisitos del Sistema
-- Node.js (v16 o superior)
-- npm (v8 o superior) o yarn
+- Node.js (v18 o superior)
+- npm (v8 o superior)
 - MySQL (v5.7 o superior) o MariaDB
 - Git
 
@@ -31,6 +31,12 @@ cd EventR
 2. Instala las dependencias:
 ```bash
 npm install
+```
+3. Instala las dependencias en frontend
+```bash
+cd frontend
+npm install vite --save-dev
+npm install @vitejs/plugin-react --save-dev
 ```
 
 ## Estructura del Proyecto
